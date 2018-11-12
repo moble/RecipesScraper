@@ -1,1 +1,1 @@
-extruct
+extruct==0.7.1

@@ -3,12 +3,20 @@ JSON exporter for processed spider items.
 """
 import datetime
 from scrapy.exporters import JsonItemExporter
+import os
 
 
 class JsonPipeline(object):
   """Save Pipeline output to JSON."""
   def __init__(self, spider_name):
-    self.file = open("output/{}_recipes.json".format(spider_name), 'wb')
+    filename = "output/{}_recipes.json".format(spider_name)
+    if not os.path.exists(os.path.dirname(filename)):
+      try:
+        os.makedirs(os.path.dirname(filename))
+      except OSError as exc: # Guard against race condition
+        if exc.errno != errno.EEXIST:
+          raise
+    self.file = open(filename, 'wb')
     self.file.write(
         '{"date_scraped": "%s", "recipes": ' % datetime.datetime.now()
     )

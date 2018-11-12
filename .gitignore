@@ -7,3 +7,6 @@
 # Project folders 
 nohup/
 output/
+
+build
+project.egg-info

@@ -155,9 +155,9 @@ def get_recursive_site_list(base_url):
 
 def get_and_parse_allrecipes_sitemap():
   """Get and parse the allrecipes sitemap."""
-  # Sitemap:  http://allrecipes.com/gsindex.xml
+  # Sitemap:  https://allrecipes.com/gsindex.xml
   xml_file_path = "xml/allrecipes_sitemap.xml"
-  get_sitemap("http://allrecipes.com/", "recipehubs.xml.gz", xml_file_path)
+  get_sitemap("https://allrecipes.com/", "recipehubs.xml.gz", xml_file_path)
   seed_list = get_seed_list(xml_file_path, "allrecipes.com")
   with open("seed_lists/allrecipes_seed_list.txt", "wb") as outfile:
     outfile.write("\n".join(seed_list))
@@ -166,7 +166,7 @@ def get_and_parse_allrecipes_sitemap():
 def get_and_parse_jamieoliver_sitemap():
   """Get and parse the Jamie Oliver sitemap."""
   xml_file_path = "xml/jamieoliver_sitemap.xml"
-  get_sitemap("http://www.jamieoliver.com/recipes/", "sitemap.xml",
+  get_sitemap("https://www.jamieoliver.com/recipes/", "sitemap.xml",
               xml_file_path, compressed=False)
   seed_list = get_seed_list(xml_file_path, "jamieoliver.com")
   with open("seed_lists/jamieoliver_seed_list.txt", "wb") as outfile:
@@ -196,10 +196,10 @@ def get_and_parse_myrecipes_sitemap():
 def get_and_parse_epicurious_sitemap():
   """Get and parse the epicurious sitemap."""
   member_recipes = get_recursive_site_list(
-      "http://www.epicurious.com/sitemap.xml/member-recipes"
+      "https://www.epicurious.com/sitemap.xml/member-recipes"
   )
   editorial_recipes = get_recursive_site_list(
-      "http://www.epicurious.com/sitemap.xml/editorial-recipes"
+      "https://www.epicurious.com/sitemap.xml/editorial-recipes"
   )
 
   seed_list = member_recipes + editorial_recipes
@@ -208,7 +208,7 @@ def get_and_parse_epicurious_sitemap():
 
 
 if __name__ == "__main__":
-  get_and_parse_allrecipes_sitemap()
-  get_and_parse_jamieoliver_sitemap()
+  # get_and_parse_allrecipes_sitemap()
+  # get_and_parse_jamieoliver_sitemap()
   get_and_parse_myrecipes_sitemap()
   get_and_parse_epicurious_sitemap()

@@ -4,9 +4,9 @@ This repo contains various spiders to scrape different recipe websites.
 
 ## Spiders
 
-* [All Recipes](http://allrecipes.com/)
-* [Jamie Oliver](http://www.jamieoliver.com/)
-* [Epicurious](http://www.epicurious.com/)
+* [All Recipes](https://allrecipes.com/)
+* [Jamie Oliver](https://www.jamieoliver.com/)
+* [Epicurious](https://www.epicurious.com/)
 
 ## Running a spider
 
@@ -28,14 +28,14 @@ nohup scrapy crawl <spider_name> &
 
 ## Sample Output
 
-Here's sample output for a [Black-Bean Quesadilla recipe from Epicurious](http://www.epicurious.com/recipes/food/views/black-bean-quesadillas-239962).
+Here's sample output for a [Black-Bean Quesadilla recipe from Epicurious](https://www.epicurious.com/recipes/food/views/black-bean-quesadillas-239962).
 
 ```JSON
 {
     "date_scraped": "2017-02-11 22:33:05.667233",
     "recipes": [
         {
-            "url": "http://www.epicurious.com/recipes/food/views/black-bean-quesadillas-239962",
+            "url": "https://www.epicurious.com/recipes/food/views/black-bean-quesadillas-239962",
             "ingredients": [
                 "1 (19-ounce) can black beans, rinsed and drained",
                 "1 (8-ounce) bag mixed grated \"taco cheese\"",

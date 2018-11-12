@@ -13,7 +13,7 @@ class AllRecipesSpider(scrapy.Spider):
   """Spider to scrape All Recipes (allrecipes.com)"""
   name = "allrecipes"
 
-  start_urls = ["http://allrecipes.com/recipes/?page={}".format(page)
+  start_urls = ["https://www.allrecipes.com/recipes/?page={}".format(page)
                 for page in range(3000)]
 
   def parse(self, response):

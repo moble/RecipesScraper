@@ -12,10 +12,10 @@ from RecipesScraper.items import RecipeItem
 class Epicurious(scrapy.Spider):
   """Spider to scrape Epicurious (epicurious.com)"""
   name = "epicurious"
-  edit_base = "http://www.epicurious.com/services/sitemap/recipes/editorial"
+  edit_base = "https://www.epicurious.com/services/sitemap/recipes/editorial"
   editorial_recipes = ["{}/{}?page=1".format(edit_base, year)
                        for year in range(1998, 2018)]
-  mem_base = "http://www.epicurious.com/services/sitemap/recipes/member"
+  mem_base = "https://www.epicurious.com/services/sitemap/recipes/member"
   member_recipes = ["{}/{}?page=1".format(mem_base, year)
                     for year in range(2005, 2018)]
   start_urls = editorial_recipes + member_recipes

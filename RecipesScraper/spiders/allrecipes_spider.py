@@ -28,37 +28,49 @@ class AllRecipesSpider(scrapy.Spider):
     schema_type = "mde"
     mde = MicrodataExtractor()
     data = mde.extract(response.body)
-    if len(data['items']) == 0:
+    # print('response.body:', response.body)
+    # print('data:', data)
+    if len(data) == 0:
       jslde = JsonLdExtractor()
       data = jslde.extract(response.body)
       schema_type = "jsonld"
 
     if schema_type == "mde":
-      recipe = data['items'][0]['properties']
-      recipe_output_item = RecipeItem()
-      recipe_output_item['recipe_name'] = recipe['name']
-      recipe_output_item['ingredients'] = [
-          ingredient for ingredient in recipe['ingredients']
-          if ingredient not in ['', 'Add all ingredients to list']
-      ]
-      recipe_output_item['tags'] = [tag['properties']['title']
-                                    for tag in data['items'][1:]]
-      try:
-        recipe_output_item['description'] = recipe['description']
-      except KeyError:
-        recipe_output_item['description'] = None
-      recipe_output_item['url'] = recipe['url']
+      recipe = data[0]['properties']
+      # recipe_output_item = RecipeItem()
+      # recipe_output_item['recipe_name'] = recipe['name']
+      # recipe_output_item['ingredients'] = [
+      #     ingredient for ingredient in recipe['ingredients']
+      #     if ingredient not in ['', 'Add all ingredients to list']
+      # ]
+      # recipe_output_item['tags'] = [tag['properties']['title']
+      #                               for tag in data['items'][1:]]
+      # try:
+      #   recipe_output_item['description'] = recipe['description']
+      # except KeyError:
+      #   recipe_output_item['description'] = None
+      # recipe_output_item['url'] = recipe['url']
     elif schema_type == "jsonld":
       recipe = data['items'][0]
-      recipe_output_item = RecipeItem()
-      recipe_output_item['recipe_name'] = recipe['name']
-      recipe_output_item['ingredients'] = recipe['ingredients']
-      recipe_output_item['tags'] = [tag['properties']['title']
-                                    for tag in data['items'][1:]]
+      # recipe_output_item = RecipeItem()
+      # recipe_output_item['recipe_name'] = recipe['name']
+      # recipe_output_item['ingredients'] = recipe['ingredients']
+      # recipe_output_item['tags'] = [tag['properties']['title']
+      #                               for tag in data['items'][1:]]
+      # try:
+      #   recipe_output_item['description'] = recipe['description']
+      # except KeyError:
+      #   recipe_output_item['description'] = None
+      # recipe_output_item['url'] = recipe['url']
+
+    properties = ['totalTime', 'nutrition', 'name', 'author', 'url', 'image', 'recipeIngredient',
+                  'aggregateRating', 'recipeYield', 'recipeInstructions', 'video', 'mainEntityOfPage',
+                  'cookTime', 'recipeCategory', 'review', 'prepTime', 'description']
+    recipe_output_item = RecipeItem()
+    for prop in properties:
       try:
-        recipe_output_item['description'] = recipe['description']
+        recipe_output_item[prop] = recipe[prop]
       except KeyError:
-        recipe_output_item['description'] = None
-      recipe_output_item['url'] = recipe['url']
+        recipe_output_item[prop] = None
 
     yield recipe_output_item

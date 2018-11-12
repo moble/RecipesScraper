@@ -34,4 +34,6 @@ AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 #AUTOTHROTTLE_DEBUG = False
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:53.0) Gecko/20100101 Firefox/53.0"
-DOWNLOAD_DELAY = 2.1  # Wait 2.1 seconds between requests; their robots.txt asks for 1, and scrapy randomizes the wait between 0.5 and 1.5 times this number
+DOWNLOAD_DELAY = 2.5  # Wait 2.5 seconds between requests; their robots.txt asks for 1, and scrapy randomizes the wait between 0.5 and 1.5 times this number
+
+CONCURRENT_REQUESTS_PER_DOMAIN = 1
